@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.techwithadi.gpscbudy.ComplateListners;
 import com.techwithadi.gpscbudy.Database;
-import com.techwithadi.gpscbudy.MainActivity;
 import com.techwithadi.gpscbudy.Models.CategoryModel;
 import com.techwithadi.gpscbudy.Quiz.TestActivity;
 import com.techwithadi.gpscbudy.R;
@@ -80,7 +79,7 @@ public class CatAdepter extends RecyclerView.Adapter<CatAdepter.Viewholder> {
 
 
             super(itemView);
-            cat_name=itemView.findViewById(R.id.cat_name);
+            cat_name=itemView.findViewById(R.id.quize_title);
 //       cat_img=myview.findViewById(R.id.cat_img);
             count=itemView.findViewById(R.id.testcount);
 

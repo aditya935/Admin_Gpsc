@@ -8,9 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.techwithadi.gpscbudy.Models.CategoryModel;
 import com.techwithadi.gpscbudy.Quiz.TestActivity;
 import com.techwithadi.gpscbudy.R;
@@ -60,7 +57,7 @@ public class CategoryAdepter extends BaseAdapter {
        ImageView cat_img;
        TextView cat_name, count;
 
-       cat_name=myview.findViewById(R.id.cat_name);
+       cat_name=myview.findViewById(R.id.quize_title);
 //       cat_img=myview.findViewById(R.id.cat_img);
        count=myview.findViewById(R.id.testcount);
 
