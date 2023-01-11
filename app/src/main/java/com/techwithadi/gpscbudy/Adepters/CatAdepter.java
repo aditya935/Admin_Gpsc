@@ -50,18 +50,6 @@ public class CatAdepter extends RecyclerView.Adapter<CatAdepter.Viewholder> {
                 intent.putExtra("cat_id", Database.Sub_list.get(holder.getAdapterPosition()).getDocid());
                 view.getContext().startActivity(intent);
 
-                Database.loadtestdata(Database.Sub_list.get(holder.getAdapterPosition()).getDocid(), new ComplateListners() {
-                    @Override
-                    public void OnSuccess() {
-
-                    }
-
-                    @Override
-                    public void OnFailure() {
-
-                    }
-                });
-
             }
         });
     }

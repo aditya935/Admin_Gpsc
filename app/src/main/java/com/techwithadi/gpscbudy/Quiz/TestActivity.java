@@ -69,21 +69,6 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
-//        Database.loadquestions(new ComplateListners() {
-//            @Override
-//            public void OnSuccess() {
-//
-//            }
-//
-//            @Override
-//            public void OnFailure() {
-//
-//            }
-//        },selected_cat,selected_test_id);
-
-
-
-
 
     }
 
