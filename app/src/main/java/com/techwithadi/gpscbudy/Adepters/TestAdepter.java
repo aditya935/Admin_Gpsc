@@ -51,7 +51,7 @@ public class TestAdepter extends RecyclerView.Adapter<TestAdepter.Holder> {
                 intent.putExtra("Selected_cat_name",TestActivity.selected_cat);
                 intent.putExtra("top score",prog+"");
                 intent.putExtra("test id",Database.test_list.get(holder.getAdapterPosition()).getTestId()+"");
-                intent.putExtra("Test_Time",Database.test_list.get(holder.getAdapterPosition()).getTime()+" min");
+                intent.putExtra("Test_Time",Database.test_list.get(holder.getAdapterPosition()).getTime()+"");
                 intent.putExtra("Selected_test","Test No: "+(holder.getAdapterPosition()+1));
                 view.getContext().startActivity(intent);
 

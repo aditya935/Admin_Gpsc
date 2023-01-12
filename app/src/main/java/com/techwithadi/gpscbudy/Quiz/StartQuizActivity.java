@@ -36,8 +36,8 @@ String selected_test_id;
                 queloader.setVisibility(View.INVISIBLE);
                 cat_name.setText(selected_cat_name);
                 //test_no.setText(selected_test_id);
-                test_no.setText(Database.Question_list.get(0).getQuestion());
-                total_time.setText(getIntent().getStringExtra("Test_Time"));
+                test_no.setText(selected_test_id);
+                total_time.setText(getIntent().getStringExtra("Test_Time")+" min");
                 top_score.setText(getIntent().getStringExtra("top score"));
                 total_question.setText(Database.Question_list.size()+"");
             }
@@ -60,6 +60,9 @@ String selected_test_id;
             @Override
             public void onClick(View view) {
                 Intent intent= new Intent(StartQuizActivity.this,QuestionsActivity.class);
+                intent.putExtra("total_que",Database.Question_list.size());
+                intent.putExtra("quize_title",selected_cat_name);
+                intent.putExtra("quize_time",getIntent().getStringExtra("Test_Time"));
                 startActivity(intent);
                 finish();
             }
