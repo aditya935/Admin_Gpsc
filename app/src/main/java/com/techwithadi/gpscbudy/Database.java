@@ -111,8 +111,7 @@ public class Database {
       CollectionReference collectionRef = firestore.collection("SUBJECT");
       DocumentReference docRef = collectionRef.document(docid);
       CollectionReference subcollectionRef = docRef.collection("TEST_LIST");
-
-             subcollectionRef.get()
+      subcollectionRef.get()
               .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                   @Override
                   public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -181,7 +180,7 @@ public class Database {
                           String d=doc.getString("D");
                           Long ans=doc.getLong("ANS");
 
-                          Question_list.add(new QuestionModel(que,a,b,c,d, ans.intValue()));
+                          Question_list.add(new QuestionModel(que,a,b,c,d, ans.intValue(),-1));
                       }
 
                       complateListners.OnSuccess();

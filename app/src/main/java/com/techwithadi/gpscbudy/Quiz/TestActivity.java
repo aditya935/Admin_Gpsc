@@ -47,7 +47,7 @@ public class TestActivity extends AppCompatActivity {
         selected_cat_id=cat_id;
         selected_cat=getIntent().getStringExtra("cat_name");
         selected_test_id=getIntent().getStringExtra("test_id");
-        getSupportActionBar().setTitle(Database.Sub_list.get(cat_index).getCat_name()); // SEt Title Text
+        getSupportActionBar().setTitle(selected_cat); // SEt Title Text
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // SEt Back Button On Actionbar
 
 

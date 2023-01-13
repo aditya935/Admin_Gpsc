@@ -3,6 +3,8 @@ package com.techwithadi.gpscbudy.Quiz;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,21 +27,20 @@ public class QuestionsActivity extends AppCompatActivity {
 
  TextView question_no,timer,quize_title;
  AppCompatButton submit,clearbtn,markbtn;
- ImageButton bookmark,question_grid,btnback,btnnext;
+ ImageButton bookmark,question_grid,btnback,btnnext,closebtn;
  RecyclerView question_view;
  private int queno=0;
  private int time;
- public int sec;
- public int min;
- public  String mytime;
+ QuestionAdepter questionAdepter;
+ DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_questions);
+        setContentView(R.layout.question_drawer_layout);
         init();
         time= Integer.parseInt(getIntent().getStringExtra("quize_time"));
-        QuestionAdepter questionAdepter=new QuestionAdepter(Database.Question_list);
+         questionAdepter=new QuestionAdepter(Database.Question_list);
         question_view.setAdapter(questionAdepter);
 
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
@@ -91,6 +92,35 @@ public class QuestionsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        clearbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Database.Question_list.get(QuestionAdepter.cposition).setSelectedAns(-1);
+                questionAdepter.notifyDataSetChanged();
+            }
+        });
+
+       question_grid.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+
+               if (!drawer.isDrawerOpen(GravityCompat.END))
+               {
+                  drawer.openDrawer(GravityCompat.END);
+               }
+               }
+       });
+
+       closebtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (drawer.isDrawerOpen(GravityCompat.END))
+               {
+                   drawer.closeDrawer(GravityCompat.END);
+               }
+           }
+       });
     }
 
     private void setsnaphelper() {
@@ -126,10 +156,11 @@ public class QuestionsActivity extends AppCompatActivity {
         question_grid=findViewById(R.id.question_grid);
         btnback=findViewById(R.id.btnback);
         btnnext=findViewById(R.id.btnnext);
+        drawer=findViewById(R.id.drawer);
+        closebtn=findViewById(R.id.closebtn);
 
         question_no.setText((queno+1)+"/"+Database.Question_list.size());
         quize_title.setText(getIntent().getStringExtra("quize_title"));
-        timer.setText(mytime);
 
     }
 }

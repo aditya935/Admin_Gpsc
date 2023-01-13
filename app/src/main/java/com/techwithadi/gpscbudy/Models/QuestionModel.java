@@ -6,6 +6,8 @@ public class QuestionModel {
     private String OptionB;
     private String OptionC;
     private String OptionD;
+    private int CurrectAns;
+    private int SelectedAns;
 
     public String getQuestion() {
         return Question;
@@ -55,14 +57,22 @@ public class QuestionModel {
         CurrectAns = currectAns;
     }
 
-    private int CurrectAns;
 
-    public QuestionModel(String question, String optionA, String optionB, String optionC, String optionD, int currectAns) {
+    public int getSelectedAns() {
+        return SelectedAns;
+    }
+
+    public void setSelectedAns(int selectedAns) {
+        SelectedAns = selectedAns;
+    }
+
+    public QuestionModel(String question, String optionA, String optionB, String optionC, String optionD, int currectAns , int SelectedAns) {
         Question = question;
         OptionA = optionA;
         OptionB = optionB;
         OptionC = optionC;
         OptionD = optionD;
         CurrectAns = currectAns;
+        this.SelectedAns=SelectedAns;
     }
 }

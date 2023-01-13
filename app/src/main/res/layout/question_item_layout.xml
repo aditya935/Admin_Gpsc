@@ -36,7 +36,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/unselected_option"
         android:elevation="5dp"
         android:text="Here we provide leading class wise material like liberty, Anamika Academy, Aastha Academy and ICE Institute’s Gujarat History pdf book." />
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/unselected_option"
         android:elevation="5dp"
         android:text="Here we provide leading class wise material like liberty, Anamika Academy, Aastha Academy and ICE Institute’s Gujarat History pdf book." />
 
@@ -60,7 +60,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="30dp"
         android:layout_weight="1"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/unselected_option"
         android:elevation="5dp"
         android:text="Here we provide leading class wise material like liberty, Anamika Academy, Aastha Academy and ICE Institute’s Gujarat History pdf book." />
 
@@ -73,7 +73,7 @@
         android:layout_marginRight="30dp"
         android:layout_marginBottom="15dp"
         android:layout_weight="1"
-        android:background="@drawable/login_btn"
+        android:background="@drawable/unselected_option"
         android:elevation="5dp"
         android:text="Here we provide leading class wise material like liberty, Anamika Academy, Aastha Academy and ICE Institute’s Gujarat History pdf book." />
 
