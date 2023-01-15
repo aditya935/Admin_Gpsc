@@ -7,12 +7,57 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:28682583405:android:8afea0a88ae77cdfbdae64",
+        "android_client_info": {
+          "package_name": "com.techwithadi.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "28682583405-4adks74fbgv72mi6piooh9tqao2g76ap.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techwithadi.admin",
+            "certificate_hash": "5e2b2ef45b8aebce1162a6223e861ad33ecc2c8e"
+          }
+        },
+        {
+          "client_id": "28682583405-qi13fv0s4sd6p7u6uc0sdblvsk04icep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDtHbccnllm7-h5cvS7PDNXs3jVAhK6rB8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "28682583405-qi13fv0s4sd6p7u6uc0sdblvsk04icep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:28682583405:android:6e5f16774923d06fbdae64",
         "android_client_info": {
           "package_name": "com.techwithadi.gpscbudy"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "28682583405-hd8c79pd6ppj20siaqq6qtk9ke3f7uid.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.techwithadi.gpscbudy",
+            "certificate_hash": "b9a1ee86c8ff6122cc19557d7fa7ad2a23e35418"
+          }
+        },
         {
           "client_id": "28682583405-qi13fv0s4sd6p7u6uc0sdblvsk04icep.apps.googleusercontent.com",
           "client_type": 3
