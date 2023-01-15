@@ -1,5 +1,8 @@
 package com.techwithadi.gpscbudy.Adepters;
 
+import static com.techwithadi.gpscbudy.Quiz.QuestionsActivity.markimg;
+import static com.techwithadi.gpscbudy.Quiz.QuestionsActivity.marktxt;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.techwithadi.gpscbudy.Database;
 import com.techwithadi.gpscbudy.Models.QuestionModel;
+import com.techwithadi.gpscbudy.Quiz.QuestionsActivity;
 import com.techwithadi.gpscbudy.R;
 
 import java.util.ArrayList;
@@ -103,21 +107,22 @@ public class QuestionAdepter extends RecyclerView.Adapter<QuestionAdepter.ViewHo
 
             if (Database.Question_list.get(pos).getSelectedAns() == i){
                 btn.setBackgroundResource(R.drawable.selcted_option);
+
             }
             else {
                 btn.setBackgroundResource(R.drawable.unselected_option);
+
             }
         }
 
-        private void selectOption(AppCompatButton btn, int i, int pos) {
+        private void selectOption(AppCompatButton btn, int i, int pos)
+        {
+            QuestionsActivity.changestatus(pos,1);
             if (previous_selected_btn == null)
             {
                 btn.setBackgroundResource(R.drawable.selcted_option);
                 Database.Question_list.get(pos).setSelectedAns(i);
                 previous_selected_btn=btn;
-            }
-            else if(previous_selected_btn.getId()==R.id.clearbtn){
-
             }
             else {
                 if (previous_selected_btn.getId() == btn.getId())
@@ -134,11 +139,12 @@ public class QuestionAdepter extends RecyclerView.Adapter<QuestionAdepter.ViewHo
                 }
 
             }
+            marktxt.setVisibility(View.INVISIBLE);
+            markimg.setVisibility(View.INVISIBLE);
         }
 
 
     }
-    public static void clearsel(){
 
-    }
+
 }

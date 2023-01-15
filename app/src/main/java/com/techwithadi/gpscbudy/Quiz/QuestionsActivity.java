@@ -13,12 +13,15 @@ import androidx.recyclerview.widget.SnapHelper;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.techwithadi.gpscbudy.Adepters.QuestionAdepter;
+import com.techwithadi.gpscbudy.Adepters.Question_grid_Adepter;
 import com.techwithadi.gpscbudy.Database;
+import com.techwithadi.gpscbudy.Models.QuestionModel;
 import com.techwithadi.gpscbudy.R;
 
 import java.util.concurrent.TimeUnit;
@@ -28,16 +31,20 @@ public class QuestionsActivity extends AppCompatActivity {
  TextView question_no,timer,quize_title;
  AppCompatButton submit,clearbtn,markbtn;
  ImageButton bookmark,question_grid,btnback,btnnext,closebtn;
- RecyclerView question_view;
- private int queno=0;
+ public static RecyclerView question_view;
+ private int queno;
  private int time;
  QuestionAdepter questionAdepter;
- DrawerLayout drawer;
-
+ public static DrawerLayout drawer;
+ private GridView Question_grid;
+ public Question_grid_Adepter question_grid_adepter;
+ public static ImageView markimg;
+ public static TextView marktxt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.question_drawer_layout);
+        changestatus(0,2);
         init();
         time= Integer.parseInt(getIntent().getStringExtra("quize_time"));
          questionAdepter=new QuestionAdepter(Database.Question_list);
@@ -46,9 +53,21 @@ public class QuestionsActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         question_view.setLayoutManager(linearLayoutManager);
+
+        question_grid_adepter = new Question_grid_Adepter(Database.Question_list.size());
+        Question_grid.setAdapter(question_grid_adepter);
+
         starttimer();
         setsnaphelper();
         setclicklistner();
+    }
+
+    public static void gotoque(int qn){
+        question_view.smoothScrollToPosition(qn);
+        if (drawer.isDrawerOpen(GravityCompat.END))
+        {
+            drawer.closeDrawer(GravityCompat.END);
+        }
     }
 
     private void starttimer() {
@@ -96,15 +115,19 @@ public class QuestionsActivity extends AppCompatActivity {
         clearbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Database.Question_list.get(QuestionAdepter.cposition).setSelectedAns(-1);
-                questionAdepter.notifyDataSetChanged();
+                if (Database.Question_list.get(queno).getStatus() != 4){
+                    Database.Question_list.get(QuestionAdepter.cposition).setSelectedAns(-1);
+                    questionAdepter.notifyDataSetChanged();
+                    changestatus(QuestionAdepter.cposition,2);
+                }
+
             }
         });
 
        question_grid.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-
+               question_grid_adepter.notifyDataSetChanged();
                if (!drawer.isDrawerOpen(GravityCompat.END))
                {
                   drawer.openDrawer(GravityCompat.END);
@@ -121,6 +144,18 @@ public class QuestionsActivity extends AppCompatActivity {
                }
            }
        });
+
+       markbtn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               if (Database.Question_list.get(queno).getStatus() != 1){
+                   changestatus(queno,4);
+                   marktxt.setVisibility(View.VISIBLE);
+                   markimg.setVisibility(View.VISIBLE);
+               }
+
+           }
+       });
     }
 
     private void setsnaphelper() {
@@ -133,8 +168,20 @@ public class QuestionsActivity extends AppCompatActivity {
                 super.onScrollStateChanged(recyclerView, newState);
                 View view=snapHelper.findSnapView(recyclerView.getLayoutManager());
                 queno=recyclerView.getLayoutManager().getPosition(view);
-
                 question_no.setText((queno+1)+"/"+Database.Question_list.size());
+                if (Database.Question_list.get(queno).getStatus() != 1 && Database.Question_list.get(queno).getStatus() != 4){
+                    changestatus(queno,2);
+                }
+                if (Database.Question_list.get(queno).getStatus() == 4)
+                {
+                 marktxt.setVisibility(View.VISIBLE);
+                 markimg.setVisibility(View.VISIBLE);
+                }
+                else {
+                    marktxt.setVisibility(View.INVISIBLE);
+                    markimg.setVisibility(View.INVISIBLE);
+                }
+
             }
 
             @Override
@@ -158,9 +205,20 @@ public class QuestionsActivity extends AppCompatActivity {
         btnnext=findViewById(R.id.btnnext);
         drawer=findViewById(R.id.drawer);
         closebtn=findViewById(R.id.closebtn);
+        Question_grid=findViewById(R.id.Question_grid);
+        markimg=findViewById(R.id.reviewimg);
+        marktxt=findViewById(R.id.marktxt);
 
-        question_no.setText((queno+1)+"/"+Database.Question_list.size());
+        question_no.setText("1/"+Database.Question_list.size());
         quize_title.setText(getIntent().getStringExtra("quize_title"));
+        drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
+    }
+
+    public static void changestatus(int pos , int status)
+    {
+        Database.Question_list.get(pos).setStatus(status);
+        Question_grid_Adepter q_ad= new Question_grid_Adepter(Database.Question_list.size());
+        q_ad.notifyDataSetChanged();
     }
 }

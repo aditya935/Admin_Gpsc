@@ -33,8 +33,11 @@ public class Database {
   public static TestAdepter testAdepter;
   public static int i;
   public static ProfileModals myprofile=new ProfileModals("Your Name","Your Email");
-
   public static ArrayList<QuestionModel> Question_list=new ArrayList<>();
+  public static final int answered=1;
+  public static final int unanswered=2;
+  public static final int not_visited=3;
+  public static final int reviewed=4;
 
 
   public static void createuser(String email,String name , ComplateListners complateListners){
@@ -180,7 +183,7 @@ public class Database {
                           String d=doc.getString("D");
                           Long ans=doc.getLong("ANS");
 
-                          Question_list.add(new QuestionModel(que,a,b,c,d, ans.intValue(),-1));
+                          Question_list.add(new QuestionModel(que,a,b,c,d, ans.intValue(),-1,3));
                       }
 
                       complateListners.OnSuccess();
